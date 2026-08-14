@@ -1,0 +1,14 @@
+# React / Node
+frontend/node_modules/
+frontend/dist/
+
+# Environment variables
+frontend/.env
+backend/.env
+
+# IDE
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
