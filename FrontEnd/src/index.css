@@ -6,7 +6,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: #f8f7f4;
+  background: rgb(238, 236, 222);
   color: #24323d;
 }
 
@@ -29,7 +29,7 @@ button {
   align-items: center;
   justify-content: space-between;
 
-  background: #ffffff;
+  background: rgb(230, 206, 179);
   border-bottom: 1px solid #e7e1d8;
 }
 
