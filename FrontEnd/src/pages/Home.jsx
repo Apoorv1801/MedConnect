@@ -23,9 +23,10 @@ function Home() {
         </div>
 
         <div className="hero-image">
-          <div className="image-placeholder">
-            Medical Consultation
-          </div>
+          <img
+            src="/images/hero-medical.png"
+            alt="Doctor consulting a patient"
+          />
         </div>
       </section>
     </main>

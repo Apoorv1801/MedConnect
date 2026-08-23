@@ -147,29 +147,20 @@ button {
 }
 
 .hero-image {
-  width: 43%;
-  min-height: 470px;
+  width: 520px;
+  height: 500px;
 
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
-.image-placeholder {
+.hero-image img {
   width: 100%;
-  height: 470px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 180px 180px 25px 25px;
-
-  background: #e9d8ca;
-  color: #234b59;
-
-  font-size: 20px;
-  font-weight: 600;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 /* MOBILE */
