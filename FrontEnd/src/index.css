@@ -24,14 +24,14 @@ button {
 
 .navbar {
   position: relative;
-  height: 100px;
+  height: 78px;
   padding: 0 7%;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   background: rgb(230, 206, 179);
-  border-bottom: 8px solid #d9794a;
+  border-bottom: 1px solid #e7e1d8;
 }
 
 .logo {
