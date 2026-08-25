@@ -183,3 +183,153 @@
   }
 }
 
+/* DEPARTMENTS SECTION */
+
+.departments-section {
+  padding: 60px 0 20px;
+}
+
+.departments-heading {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 45px;
+}
+
+.departments-heading h2 {
+  font-family: Georgia, serif;
+  font-size: 34px;
+  color: #234b59;
+  margin-bottom: 12px;
+}
+
+.departments-heading h2 span {
+  color: #d9794a;
+}
+
+.departments-heading p {
+  color: #65727a;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.departments-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #e0d6c5;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.department-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+
+  padding: 40px 20px;
+
+  background: rgb(238, 236, 222);
+  border-right: 1px solid #e0d6c5;
+  border-bottom: 1px solid #e0d6c5;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.department-card:nth-child(4n) {
+  border-right: none;
+}
+
+.department-card:hover {
+  background: #f2e3d1;
+}
+
+.department-card.active {
+  background: #234b59;
+  border-color: #234b59;
+}
+
+.department-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e6ceb3;
+  color: #234b59;
+
+  transition: 0.2s ease;
+}
+
+.department-card.active .department-icon {
+  background: #d9794a;
+  color: white;
+}
+
+.department-card span {
+  font-weight: 700;
+  font-size: 15px;
+  color: #234b59;
+}
+
+.department-card.active span {
+  color: white;
+}
+
+/* SHOW MORE + BACK BUTTONS */
+
+.show-more-wrap {
+  text-align: center;
+  margin-top: 35px;
+}
+
+.show-more-btn {
+  padding: 13px 30px;
+  border: 1px solid #234b59;
+  border-radius: 26px;
+  background: transparent;
+  color: #234b59;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.show-more-btn:hover {
+  background: #234b59;
+  color: white;
+}
+
+.back-btn {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  background: none;
+  border: none;
+  color: #234b59;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  color: #d9794a;
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+  .departments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .department-card:nth-child(4n) {
+    border-right: 1px solid #e0d6c5;
+  }
+
+  .department-card:nth-child(2n) {
+    border-right: none;
+  }
+}
