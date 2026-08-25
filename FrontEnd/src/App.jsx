@@ -1,6 +1,7 @@
 import Navbar from "./components/NavBar";
 import Home from "./pages/Home";
 import Features from "./pages/Features";
+import FindDoctor from "./pages/FindDoctor";
 
 function App() {
   return (
@@ -8,6 +9,7 @@ function App() {
       <Navbar />
       <Home />
       <Features />
+      <FindDoctor />
     </>
   );
 }
