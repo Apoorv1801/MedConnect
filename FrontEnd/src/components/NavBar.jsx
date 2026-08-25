@@ -29,7 +29,7 @@ function Navbar() {
 
       <div className="nav-links">
         <a href="/">Home</a>
-        <a href="/">Find Doctor</a>
+        <a href="/find-doctor">Find Doctor</a>
         <a href="/">Hospitals</a>
         <a href="/">Tests</a>
         <a href="/">Online Consultation</a>
