@@ -24,12 +24,17 @@ button {
 /* NAVBAR */
 
 .navbar {
+<<<<<<< HEAD
   position: fixed;      /* was: relative */
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
   height: 78px;
+=======
+  position: relative;
+  height: 100px;
+>>>>>>> 4f0e1bc717187d2dbe219932826a9be9428cc688
   padding: 0 7%;
   display: flex;
   align-items: center;
