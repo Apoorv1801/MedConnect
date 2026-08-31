@@ -38,10 +38,6 @@ function Features() {
                             Find doctors across hospitals and book appointments based on
                             specialty, availability and location.
                         </p>
-
-                        <button>
-                            Explore Doctors →
-                        </button>
                     </div>
 
                 </div>
@@ -61,10 +57,6 @@ function Features() {
                             Schedule medical tests at hospitals and diagnostic centres
                             and access your reports digitally.
                         </p>
-
-                        <button>
-                            Schedule a Test →
-                        </button>
                     </div>
 
                 </div>
@@ -84,10 +76,6 @@ function Features() {
                             Keep your prescriptions organized and track your medicines
                             and treatment history in one place.
                         </p>
-
-                        <button>
-                            View Prescriptions →
-                        </button>
                     </div>
 
                 </div>
@@ -107,10 +95,6 @@ function Features() {
                             Schedule secure online consultations with healthcare
                             professionals from the comfort of your home.
                         </p>
-
-                        <button>
-                            Consult Online →
-                        </button>
                     </div>
 
                 </div>

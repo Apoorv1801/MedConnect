@@ -75,7 +75,7 @@ function FindDoctor() {
       {showAllDoctors && (
         <>
           <button className="back-btn" onClick={resetAndGoBack}>
-            ← Back to Departments
+            ← Back 
           </button>
 
           <div className="doctor-search">

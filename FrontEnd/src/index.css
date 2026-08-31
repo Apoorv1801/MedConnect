@@ -4,11 +4,17 @@
   box-sizing: border-box;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: rgb(238, 236, 222);
   color: #24323d;
   padding-top: 78px;
+  overflow-x: hidden;
 }
 
 a {
@@ -21,6 +27,11 @@ button {
   cursor: pointer;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 /* NAVBAR */
 
 .navbar {
@@ -29,7 +40,7 @@ button {
   left: 0;
   width: 100%;
   z-index: 1000;
-  height: 78px;
+  height: 100px;
   padding: 0 7%;
   display: flex;
   align-items: center;
@@ -46,9 +57,10 @@ button {
 }
 
 .logo {
-  font-size: 27px;
+  font-size: clamp(24px, 4vw, 32px);
   font-weight: 700;
   color: #234b59;
+  white-space: nowrap;
 }
 
 .logo span {
@@ -57,12 +69,13 @@ button {
 
 .nav-links {
   display: flex;
-  gap: 30px;
+  gap: clamp(20px, 3vw, 50px);
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .nav-links a {
-  font-size: 15px;
+  font-size: clamp(15px, 1.6vw, 20px);
   color: #234b59;
   transition: 0.2s;
 }
@@ -74,13 +87,14 @@ button {
 .login-btn {
   padding: 11px 23px;
   border: none;
-  border-radius: 25px;
+  border-radius: 35px;
 
   background: #234b59;
   color: white;
 
   font-size: 14px;
   font-weight: 600;
+  white-space: nowrap;
 }
 
 /* HERO */
@@ -93,12 +107,14 @@ button {
   align-items: center;
   justify-content: space-between;
   gap: 60px;
+  flex-wrap: wrap;
 
   background: rgb(238, 236, 222);
 }
 
 .hero-content {
   max-width: 650px;
+  flex: 1 1 400px;
 }
 
 .hero-tag {
@@ -112,7 +128,7 @@ button {
 
 .hero h1 {
   font-family: Georgia, serif;
-  font-size: 62px;
+  font-size: clamp(32px, 5.5vw, 62px);
   line-height: 1.08;
   font-weight: 500;
 
@@ -129,7 +145,7 @@ button {
   max-width: 570px;
 
   color: #65727a;
-  font-size: 17px;
+  font-size: clamp(15px, 1.6vw, 17px);
   line-height: 1.7;
 }
 
@@ -137,6 +153,7 @@ button {
   display: flex;
   gap: 15px;
   margin-top: 32px;
+  flex-wrap: wrap;
 }
 
 .hero-buttons button {
@@ -160,7 +177,9 @@ button {
 
 .hero-image {
   width: 520px;
+  max-width: 100%;
   height: 500px;
+  flex: 1 1 300px;
 
   display: flex;
   align-items: center;
@@ -202,7 +221,7 @@ button {
   margin: 0;
   color: #244f5e;
   font-family: Georgia, serif;
-  font-size: 48px;
+  font-size: clamp(28px, 4.5vw, 48px);
   line-height: 1.15;
 }
 
@@ -212,7 +231,7 @@ button {
 
 .section-description {
   color: #496477;
-  font-size: 17px;
+  font-size: clamp(15px, 1.6vw, 17px);
   line-height: 1.7;
   margin-top: 20px;
   max-width: 620px;
@@ -351,7 +370,7 @@ button {
   margin: 0;
 
   font-family: Georgia, serif;
-  font-size: 56px;
+  font-size: clamp(30px, 5vw, 56px);
   line-height: 1.12;
   font-weight: 500;
 
@@ -368,7 +387,7 @@ button {
   max-width: 650px;
 
   color: #496477;
-  font-size: 17px;
+  font-size: clamp(15px, 1.6vw, 17px);
   line-height: 1.7;
 }
 
@@ -398,6 +417,8 @@ button {
 .doctor-search input,
 .doctor-search select {
   height: 52px;
+  width: 100%;
+  min-width: 0;
 
   padding: 0 17px;
 
@@ -443,78 +464,13 @@ button {
   cursor: pointer;
 
   transition: 0.2s ease;
+  white-space: nowrap;
 }
 
 .doctor-search button:hover {
   background-color: #d9794a;
 }
 
-
-/* MOBILE */
-
-@media (max-width: 900px) {
-
-  .find-doctor-page {
-    padding: 70px 7%;
-  }
-
-  .find-doctor-heading h1 {
-    font-size: 45px;
-  }
-
-  .doctor-search {
-    grid-template-columns: 1fr;
-  }
-
-  .doctor-search input,
-  .doctor-search select,
-  .doctor-search button {
-    width: 100%;
-  }
-}
-
-/* MOBILE */
-
-@media (max-width: 900px) {
-
-  .nav-links {
-    display: none;
-  }
-
-  .hero {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .hero-content {
-    max-width: 700px;
-  }
-
-  .hero h1 {
-    font-size: 45px;
-  }
-
-  .hero-description {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-buttons {
-    justify-content: center;
-  }
-
-  .hero-image {
-    width: 80%;
-  }
-
-  .features-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .features-heading h2 {
-    font-size: 40px;
-  }
-}
 
 /* RESULTS COUNT */
 
@@ -597,6 +553,7 @@ button {
   color: #65727a;
   font-size: 13px;
   margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .doctor-footer {
@@ -604,6 +561,8 @@ button {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .doctor-rating {
@@ -634,14 +593,6 @@ button {
   background: #d9794a;
 }
 
-/* MOBILE */
-
-@media (max-width: 900px) {
-  .doctor-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* DEPARTMENTS SECTION */
 
 .departments-section {
@@ -652,11 +603,12 @@ button {
   text-align: center;
   max-width: 600px;
   margin: 0 auto 45px;
+  padding: 0 20px;
 }
 
 .departments-heading h2 {
   font-family: Georgia, serif;
-  font-size: 34px;
+  font-size: clamp(26px, 4vw, 34px);
   color: #234b59;
   margin-bottom: 12px;
 }
@@ -733,6 +685,7 @@ button {
   font-weight: 700;
   font-size: 15px;
   color: #234b59;
+  text-align: center;
 }
 
 .department-card.active span {
@@ -777,18 +730,260 @@ button {
   color: #d9794a;
 }
 
-/* MOBILE */
+/* =========================================================
+   RESPONSIVE BREAKPOINTS
+   (from largest to smallest, mobile-first overrides layered)
+   ========================================================= */
 
-@media (max-width: 900px) {
-  .departments-grid {
+/* LARGE TABLET / SMALL LAPTOP */
+@media (max-width: 1200px) {
+  .features-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .doctor-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-image {
+    width: 420px;
+    height: 400px;
+  }
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 0 5%;
+  }
+
+  .nav-links {
+    gap: 24px;
+  }
+
+  .hero {
+    padding: 60px 5%;
+    gap: 40px;
+  }
+
+  .features-section {
+    padding: 80px 5%;
+  }
+
+  .find-doctor-page {
+    padding: 80px 5% 90px;
+  }
+
+  .doctor-search {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .doctor-search button {
+    grid-column: 1 / -1;
+  }
+
+  .departments-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .department-card:nth-child(4n) {
     border-right: 1px solid #e0d6c5;
   }
 
+  .department-card:nth-child(3n) {
+    border-right: none;
+  }
+}
+
+/* MOBILE / SMALL TABLET */
+@media (max-width: 900px) {
+
+  .navbar {
+    height: 80px;
+    padding: 0 5%;
+  }
+
+  body {
+    padding-top: 80px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    min-height: 0;
+    padding: 50px 6%;
+  }
+
+  .hero-content {
+    max-width: 700px;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .hero-image {
+    width: 80%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    max-width: 420px;
+  }
+
+  .features-section {
+    padding: 60px 6%;
+  }
+
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .features-heading {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .section-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .find-doctor-page {
+    padding: 70px 6%;
+  }
+
+  .find-doctor-heading {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .find-doctor-heading p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .doctor-search {
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-search input,
+  .doctor-search select,
+  .doctor-search button {
+    width: 100%;
+  }
+
+  .doctor-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .departments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .department-card:nth-child(3n) {
+    border-right: 1px solid #e0d6c5;
+  }
+
   .department-card:nth-child(2n) {
     border-right: none;
+  }
+
+  .department-card {
+    padding: 30px 15px;
+  }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 600px) {
+
+  .navbar {
+    padding: 0 5%;
+  }
+
+  .login-btn {
+    padding: 9px 16px;
+    font-size: 13px;
+  }
+
+  .hero {
+    padding: 40px 6%;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-buttons button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-card {
+    min-height: 0;
+  }
+
+  .feature-image {
+    height: 200px;
+  }
+
+  .doctor-card-image {
+    height: 190px;
+  }
+
+  .doctor-footer {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .departments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .department-card {
+    border-right: none !important;
+  }
+
+  .department-card:not(:last-child) {
+    border-bottom: 1px solid #e0d6c5;
+  }
+}
+
+/* EXTRA SMALL MOBILE */
+@media (max-width: 380px) {
+
+  .logo {
+    font-size: 22px;
+  }
+
+  .hero h1 {
+    font-size: 30px;
+  }
+
+  .hero-buttons button {
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+
+  .doctor-search {
+    padding: 18px;
+  }
+
+  .feature-content {
+    padding: 18px 18px 20px;
   }
 }

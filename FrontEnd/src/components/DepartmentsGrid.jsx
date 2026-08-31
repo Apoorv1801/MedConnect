@@ -16,7 +16,7 @@ function DepartmentsGrid({ onSelect, activeSpecialty }) {
     <div className="departments-section">
       <div className="departments-heading">
         <h2>
-          Our All <span>Department</span>
+          Find By <span>Specialty</span>
         </h2>
         <p>Browse doctors by specialty, or search directly below.</p>
       </div>
