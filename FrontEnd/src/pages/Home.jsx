@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function Home() {
+  const navigate = useNavigate();
+
   return (
     <main>
       <section className="hero">
@@ -17,8 +21,10 @@ function Home() {
           </p>
 
           <div className="hero-buttons">
-            <button>Find a Doctor</button>
-            <button>Book a Test</button>
+            <button onClick={() => navigate("/find-doctor")}>
+              Find a Doctor
+            </button>
+            <button onClick={() => navigate("/tests")}>Book a Test</button>
           </div>
         </div>
 

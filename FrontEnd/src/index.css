@@ -35,7 +35,8 @@ img {
 /* NAVBAR */
 
 .navbar {
-  position: fixed;      /* was: relative */
+  position: fixed;
+  /* was: relative */
   top: 0;
   left: 0;
   width: 100%;
@@ -49,7 +50,8 @@ img {
   background: rgb(230, 206, 179);
   border-bottom: 1px solid #e7e1d8;
 
-  transition: transform 0.35s ease;   /* new: enables the slide animation */
+  transition: transform 0.35s ease;
+  /* new: enables the slide animation */
 }
 
 .navbar-hidden {
@@ -985,5 +987,407 @@ img {
 
   .feature-content {
     padding: 18px 18px 20px;
+  }
+}
+
+/* =========================================================
+   TEST SEARCH PAGE
+   ========================================================= */
+
+.test-search-page {
+  min-height: calc(100vh - 78px);
+  padding: 90px 7% 110px;
+
+  background-color: rgb(238, 236, 222);
+}
+
+.test-search-heading {
+  max-width: 750px;
+}
+
+.test-search-heading h1 {
+  margin: 0;
+
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 5vw, 56px);
+  line-height: 1.12;
+  font-weight: 500;
+
+  color: #234b59;
+}
+
+.test-search-heading h1 span {
+  color: #d9794a;
+}
+
+.test-search-heading p {
+  margin-top: 22px;
+
+  max-width: 650px;
+
+  color: #496477;
+  font-size: clamp(15px, 1.6vw, 17px);
+  line-height: 1.7;
+}
+
+
+/* TEST CATEGORIES (mirrors DEPARTMENTS SECTION styling exactly) */
+
+.test-departments-section {
+  padding: 60px 0 20px;
+}
+
+.test-departments-heading {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 45px;
+  padding: 0 20px;
+}
+
+.test-departments-heading h2 {
+  font-family: Georgia, serif;
+  font-size: clamp(26px, 4vw, 34px);
+  color: #234b59;
+  margin-bottom: 12px;
+}
+
+.test-departments-heading h2 span {
+  color: #d9794a;
+}
+
+.test-departments-heading p {
+  color: #65727a;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.test-departments-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #e0d6c5;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.test-department-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 36px 20px;
+
+  background: rgb(238, 236, 222);
+  border-right: 1px solid #e0d6c5;
+  border-bottom: 1px solid #e0d6c5;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  text-align: center;
+}
+
+.test-department-card:nth-child(4n) {
+  border-right: none;
+}
+
+.test-department-card:hover {
+  background: #f2e3d1;
+}
+
+.test-department-card.active {
+  background: #234b59;
+  border-color: #234b59;
+}
+
+.test-department-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #e6ceb3;
+  color: #234b59;
+
+  transition: 0.2s ease;
+}
+
+.test-department-card.active .test-department-icon {
+  background: #d9794a;
+  color: white;
+}
+
+.test-department-card span {
+  font-weight: 700;
+  font-size: 15px;
+  color: #234b59;
+}
+
+.test-department-card.active span {
+  color: white;
+}
+
+.test-department-count {
+  color: #65727a;
+  font-size: 12px;
+  margin-top: -4px;
+}
+
+.test-department-card.active .test-department-count {
+  color: #e0d6c5;
+}
+
+
+/* SEARCH CONTROLS (results view) */
+
+.test-search-controls {
+  margin-top: 35px;
+
+  padding: 25px;
+
+  background-color: #e6ceb3;
+  border-radius: 18px;
+
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 15px;
+
+  box-shadow: 0 10px 25px rgba(36, 79, 94, 0.08);
+}
+
+.test-search-controls input,
+.test-search-controls select {
+  height: 52px;
+  width: 100%;
+  min-width: 0;
+
+  padding: 0 17px;
+
+  border: 1px solid #d8c0a5;
+  border-radius: 10px;
+
+  background-color: rgb(238, 236, 222);
+  color: #234b59;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+}
+
+.test-search-controls input::placeholder {
+  color: #65727a;
+}
+
+.test-search-controls input:focus,
+.test-search-controls select:focus {
+  border-color: #234b59;
+}
+
+.test-search-controls button {
+  height: 52px;
+
+  padding: 0 24px;
+
+  border: none;
+  border-radius: 26px;
+
+  background-color: #234b59;
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.test-search-controls button:hover {
+  background-color: #d9794a;
+}
+
+
+/* RESULTS */
+
+.test-results-count {
+  margin-top: 35px;
+  margin-bottom: 20px;
+
+  color: #496477;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.test-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+
+/* TEST CARD */
+
+.test-card {
+  background-color: #e6ceb3;
+
+  border-radius: 20px;
+
+  padding: 24px 25px 25px;
+
+  display: flex;
+  flex-direction: column;
+
+  transition: transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.test-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: 0 12px 30px rgba(36, 79, 94, 0.12);
+}
+
+.test-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 16px;
+}
+
+.test-category-tag {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+
+  color: #234b59;
+  background-color: #f2e3d1;
+
+  padding: 5px 12px;
+  border-radius: 20px;
+}
+
+.home-collection-tag {
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #d9794a;
+}
+
+.test-card h3 {
+  color: #244f5e;
+  font-size: 19px;
+  margin-bottom: 6px;
+}
+
+.test-description {
+  color: #496477;
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+
+  flex: 1;
+}
+
+.test-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.test-price {
+  color: #244f5e;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.compare-labs-btn {
+  border: none;
+  background: none;
+
+  color: #244f5e;
+  font-size: 14px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.compare-labs-btn:hover {
+  color: #d9794a;
+}
+
+
+/* TEST SEARCH — RESPONSIVE */
+
+@media (max-width: 900px) {
+  .test-search-page {
+    padding: 70px 6%;
+  }
+
+  .test-departments-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .test-department-card:nth-child(4n) {
+    border-right: 1px solid #e0d6c5;
+  }
+
+  .test-department-card:nth-child(2n) {
+    border-right: none;
+  }
+
+  .test-search-controls {
+    grid-template-columns: 1fr;
+  }
+
+  .test-search-controls input,
+  .test-search-controls select,
+  .test-search-controls button {
+    width: 100%;
+  }
+
+  .test-results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .test-departments-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .test-department-card:not(:last-child) {
+    border-right: none !important;
+    border-bottom: 1px solid #e0d6c5;
+  }
+}
+
+
+/* =========================================================
+   HOME PAGE BROWSE SECTIONS (specialty + test category grids)
+   ========================================================= */
+
+.specialties-home-section {
+  padding: 20px 7% 90px;
+  background-color: rgb(238, 236, 222);
+}
+
+.test-categories-home-section {
+  padding: 20px 7% 100px;
+  background-color: rgb(238, 236, 222);
+}
+
+@media (max-width: 900px) {
+
+  .specialties-home-section,
+  .test-categories-home-section {
+    padding: 20px 6% 60px;
   }
 }

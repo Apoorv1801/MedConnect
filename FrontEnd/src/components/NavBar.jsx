@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -28,11 +29,11 @@ function Navbar() {
       </div>
 
       <div className="nav-links">
-        <a href="/">Home</a>
-        <a href="/">Find Doctor</a>
-        <a href="/">Hospitals</a>
-        <a href="/">Tests</a>
-        <a href="/">Online Consultation</a>
+        <Link to="/">Home</Link>
+        <Link to="/find-doctor">Find Doctor</Link>
+        <a href="#">Hospitals</a>
+        <Link to="/tests">Tests</Link>
+        <a href="#">Online Consultation</a>
       </div>
 
       <button className="login-btn">Login</button>

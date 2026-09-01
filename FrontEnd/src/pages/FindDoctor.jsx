@@ -1,12 +1,14 @@
 import { useState, useMemo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import doctorsData from "../data/doctorsData";
-import DepartmentsGrid from "../components/DepartmentsGrid";
 
 function FindDoctor() {
-  const [showAllDoctors, setShowAllDoctors] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [searchText, setSearchText] = useState("");
-  const [specialty, setSpecialty] = useState("");
-  const [location, setLocation] = useState("");
+  const [specialty, setSpecialty] = useState(location.state?.specialty || "");
+  const [doctorLocation, setDoctorLocation] = useState("");
 
   const specialties = useMemo(
     () => [...new Set(doctorsData.map((doc) => doc.specialty))],
@@ -23,25 +25,19 @@ function FindDoctor() {
         .toLowerCase()
         .includes(searchText.toLowerCase());
       const matchesSpecialty = specialty ? doc.specialty === specialty : true;
-      const matchesLocation = location ? doc.location === location : true;
+      const matchesLocation = doctorLocation
+        ? doc.location === doctorLocation
+        : true;
       return matchesSearch && matchesSpecialty && matchesLocation;
     });
-  }, [searchText, specialty, location]);
-
-  const handleDepartmentSelect = (selectedSpecialty) => {
-    setSpecialty(selectedSpecialty);
-    setShowAllDoctors(true);
-  };
-
-  const resetAndGoBack = () => {
-    setShowAllDoctors(false);
-    setSpecialty("");
-    setSearchText("");
-    setLocation("");
-  };
+  }, [searchText, specialty, doctorLocation]);
 
   return (
     <section className="find-doctor-page">
+      <button className="back-btn" onClick={() => navigate("/")}>
+        ← Back to Home
+      </button>
+
       <div className="find-doctor-heading">
         <div className="section-label">FIND THE RIGHT DOCTOR</div>
         <h1>
@@ -55,110 +51,85 @@ function FindDoctor() {
         </p>
       </div>
 
-      {!showAllDoctors && (
-        <>
-          <DepartmentsGrid
-            onSelect={handleDepartmentSelect}
-            activeSpecialty={specialty}
-          />
-          <div className="show-more-wrap">
-            <button
-              className="show-more-btn"
-              onClick={() => setShowAllDoctors(true)}
-            >
-              Show More
-            </button>
-          </div>
-        </>
-      )}
+      <div className="doctor-search">
+        <input
+          type="text"
+          placeholder="Search doctor by name..."
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+        />
 
-      {showAllDoctors && (
-        <>
-          <button className="back-btn" onClick={resetAndGoBack}>
-            ← Back 
-          </button>
+        <select
+          value={specialty}
+          onChange={(e) => setSpecialty(e.target.value)}
+        >
+          <option value="">All Specialties</option>
+          {specialties.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
 
-          <div className="doctor-search">
-            <input
-              type="text"
-              placeholder="Search doctor by name..."
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
+        <select
+          value={doctorLocation}
+          onChange={(e) => setDoctorLocation(e.target.value)}
+        >
+          <option value="">All Locations</option>
+          {locations.map((l) => (
+            <option key={l} value={l}>
+              {l}
+            </option>
+          ))}
+        </select>
 
-            <select
-              value={specialty}
-              onChange={(e) => setSpecialty(e.target.value)}
-            >
-              <option value="">All Specialties</option>
-              {specialties.map((s) => (
-                <option key={s} value={s}>
-                  {s}
-                </option>
-              ))}
-            </select>
+        <button
+          onClick={() => {
+            setSearchText("");
+            setSpecialty("");
+            setDoctorLocation("");
+          }}
+        >
+          Reset
+        </button>
+      </div>
 
-            <select
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-            >
-              <option value="">All Locations</option>
-              {locations.map((l) => (
-                <option key={l} value={l}>
-                  {l}
-                </option>
-              ))}
-            </select>
+      <div className="doctor-results-count">
+        {filteredDoctors.length} doctor
+        {filteredDoctors.length !== 1 && "s"} found
+      </div>
 
-            <button
-              onClick={() => {
-                setSearchText("");
-                setSpecialty("");
-                setLocation("");
-              }}
-            >
-              Reset
-            </button>
-          </div>
+      <div className="doctor-grid">
+        {filteredDoctors.length === 0 ? (
+          <p className="no-results">No doctors match your search.</p>
+        ) : (
+          filteredDoctors.map((doc) => (
+            <div className="doctor-card" key={doc.id}>
+              <div className="doctor-card-image">
+                <img src={doc.image} alt={doc.name} />
+              </div>
 
-          <div className="doctor-results-count">
-            {filteredDoctors.length} doctor
-            {filteredDoctors.length !== 1 && "s"} found
-          </div>
+              <div className="doctor-card-content">
+                <h3>{doc.name}</h3>
+                <p className="doctor-specialty">{doc.specialty}</p>
 
-          <div className="doctor-grid">
-            {filteredDoctors.length === 0 ? (
-              <p className="no-results">No doctors match your search.</p>
-            ) : (
-              filteredDoctors.map((doc) => (
-                <div className="doctor-card" key={doc.id}>
-                  <div className="doctor-card-image">
-                    <img src={doc.image} alt={doc.name} />
-                  </div>
-
-                  <div className="doctor-card-content">
-                    <h3>{doc.name}</h3>
-                    <p className="doctor-specialty">{doc.specialty}</p>
-
-                    <div className="doctor-meta">
-                      <span>{doc.experience} yrs exp</span>
-                      <span>•</span>
-                      <span>{doc.location}</span>
-                    </div>
-
-                    <div className="doctor-footer">
-                      <span className="doctor-rating">⭐ {doc.rating}</span>
-                      <span className="doctor-fee">₹{doc.fee}</span>
-                    </div>
-
-                    <button className="book-btn">Book Appointment</button>
-                  </div>
+                <div className="doctor-meta">
+                  <span>{doc.experience} yrs exp</span>
+                  <span>•</span>
+                  <span>{doc.location}</span>
                 </div>
-              ))
-            )}
-          </div>
-        </>
-      )}
+
+                <div className="doctor-footer">
+                  <span className="doctor-rating">⭐ {doc.rating}</span>
+                  <span className="doctor-fee">₹{doc.fee}</span>
+                </div>
+
+                <button className="book-btn">Book Appointment</button>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
     </section>
   );
 }
