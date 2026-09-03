@@ -1,9 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
+import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 
 function Navbar() {
   const [hidden, setHidden] = useState(false);
   const lastScrollY = useRef(0);
+  const { cart } = useCart();
+  const { currentUser, logout } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,7 +41,27 @@ function Navbar() {
         <a href="#">Online Consultation</a>
       </div>
 
-      <button className="login-btn">Login</button>
+      <div className="navbar-actions">
+        <Link to="/tests/cart" className="cart-icon-wrap">
+          <ShoppingCart size={22} />
+          {cart.items.length > 0 && (
+            <span className="cart-badge">{cart.items.length}</span>
+          )}
+        </Link>
+
+        {currentUser ? (
+          <div className="user-menu">
+            <span className="user-greeting">Hi, {currentUser.name.split(" ")[0]}</span>
+            <button className="login-btn" onClick={logout}>
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link to="/login" className="login-btn">
+            Login
+          </Link>
+        )}
+      </div>
     </nav>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import testsData from "../data/testsData";
 
 function TestSearch() {
@@ -101,16 +101,13 @@ function TestSearch() {
                                     From ₹{test.startingPrice}
                                 </span>
 
-                                {/* Placeholder for now — will open the lab comparison
-                    view once that component is built. */}
-                                <button
+                                {/* Now links to the real comparison page. */}
+                                <Link
+                                    to={`/tests/${test.id}`}
                                     className="compare-labs-btn"
-                                    onClick={() =>
-                                        console.log("Compare labs for test id:", test.id)
-                                    }
                                 >
                                     Compare Labs →
-                                </button>
+                                </Link>
                             </div>
                         </div>
                     ))
