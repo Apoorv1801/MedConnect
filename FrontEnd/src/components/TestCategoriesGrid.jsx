@@ -25,8 +25,9 @@ function TestCategoriesGrid({ categories, testsData, onSelect, activeCategory })
           const count = testsData.filter((t) => t.category === cat).length;
 
           return (
-            <div
+            <button
               key={cat}
+              type="button"
               className={`test-department-card ${isActive ? "active" : ""}`}
               onClick={() => onSelect(cat)}
             >
@@ -37,7 +38,7 @@ function TestCategoriesGrid({ categories, testsData, onSelect, activeCategory })
               <p className="test-department-count">
                 {count} test{count !== 1 && "s"} available
               </p>
-            </div>
+            </button>
           );
         })}
       </div>

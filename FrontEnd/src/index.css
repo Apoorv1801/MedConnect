@@ -2594,3 +2594,76 @@ img {
     width: 100%;
   }
 }
+
+
+/* =========================================================
+   ACCESSIBILITY: BUTTON RESETS FOR CLICKABLE CARDS
+   ========================================================= */
+
+.test-department-card,
+.lab-directory-card {
+  appearance: none;
+  -webkit-appearance: none;
+
+  font-family: inherit;
+  text-align: center;
+  width: 100%;
+}
+
+.test-department-card:focus-visible,
+.lab-directory-card:focus-visible {
+  outline: 2px solid #d9794a;
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   PATIENT DETAILS FIELDS (Test Checkout)
+   ========================================================= */
+
+.checkout-subheading {
+  margin: 22px 0 14px;
+
+  color: #234b59;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.cart-checkout-panel .checkout-subheading:first-of-type {
+  margin-top: 0;
+}
+
+.cart-form-row-inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.cart-form-field select {
+  width: 100%;
+
+  padding: 12px 15px;
+
+  border: 1px solid #d8c0a5;
+  border-radius: 10px;
+
+  background-color: rgb(238, 236, 222);
+  color: #234b59;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  outline: none;
+}
+
+.cart-form-field select:focus {
+  border-color: #234b59;
+}
+
+@media (max-width: 500px) {
+  .cart-form-row-inline {
+    grid-template-columns: 1fr;
+  }
+}

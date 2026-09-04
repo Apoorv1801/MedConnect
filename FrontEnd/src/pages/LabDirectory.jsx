@@ -31,7 +31,8 @@ function LabDirectory() {
                     ).length;
 
                     return (
-                        <div
+                        <button
+                            type="button"
                             className="lab-directory-card"
                             key={lab.id}
                             onClick={() => navigate(`/labs/${lab.id}`)}
@@ -43,7 +44,7 @@ function LabDirectory() {
                             <p className="lab-directory-count">
                                 {offeringCount} test{offeringCount !== 1 && "s"} available
                             </p>
-                        </div>
+                        </button>
                     );
                 })}
             </div>

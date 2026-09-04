@@ -237,7 +237,9 @@ function Dashboard() {
                                     </div>
 
                                     <p className="dashboard-booking-meta">
-                                        {booking.date} • {booking.slot} •{" "}
+                                        For {booking.patientName} ({booking.patientAge},{" "}
+                                        {booking.patientGender}) • {booking.date} •{" "}
+                                        {booking.slot} •{" "}
                                         {booking.mode === "home" ? "Home Collection" : "Lab Visit"}
                                     </p>
 

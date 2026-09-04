@@ -21,7 +21,7 @@
 // TYPE-SPECIFIC FIELDS:
 // - "test" bookings additionally have: labId, labName, items (array of
 //   {testId, testName, price}), total, mode ("visit" | "home"), phone,
-//   address (nullable)
+//   address (nullable), patientName, patientAge, patientGender
 // - "appointment" bookings (for the doctor booking flow) should additionally
 //   have something like: doctorName, specialty, hospitalName, fee,
 //   mode ("in-person" | "video") — exact fields are up to that flow, as

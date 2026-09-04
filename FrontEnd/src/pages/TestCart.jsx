@@ -40,6 +40,9 @@ function TestCart() {
     const [slot, setSlot] = useState("");
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
+    const [patientName, setPatientName] = useState("");
+    const [patientAge, setPatientAge] = useState("");
+    const [patientGender, setPatientGender] = useState("");
     const [slotCounts, setSlotCounts] = useState({});
     const [errors, setErrors] = useState({});
 
@@ -77,6 +80,24 @@ function TestCart() {
             newErrors.phone = "Phone number is required.";
         } else if (!/^[6-9]\d{9}$/.test(phone.trim())) {
             newErrors.phone = "Enter a valid 10-digit mobile number.";
+        }
+
+        if (!patientName.trim()) {
+            newErrors.patientName = "Patient name is required.";
+        }
+
+        if (!patientAge.trim()) {
+            newErrors.patientAge = "Patient age is required.";
+        } else if (
+            !/^\d+$/.test(patientAge.trim()) ||
+            Number(patientAge) < 0 ||
+            Number(patientAge) > 120
+        ) {
+            newErrors.patientAge = "Enter a valid age (0-120).";
+        }
+
+        if (!patientGender) {
+            newErrors.patientGender = "Please select the patient's gender.";
         }
 
         if (mode === "home") {
@@ -122,6 +143,9 @@ function TestCart() {
             total,
             mode,
             phone,
+            patientName,
+            patientAge,
+            patientGender,
             address: mode === "home" ? address : null,
         };
 
@@ -239,6 +263,56 @@ function TestCart() {
                         this booking will be a lab visit.
                     </p>
                 )}
+
+                <p className="checkout-subheading">Patient Details</p>
+
+                <div className="cart-form-field">
+                    <label>Patient Name</label>
+                    <input
+                        type="text"
+                        placeholder="Full name of the person being tested"
+                        value={patientName}
+                        onChange={(e) => setPatientName(e.target.value)}
+                    />
+                    {errors.patientName && (
+                        <p className="field-error">{errors.patientName}</p>
+                    )}
+                </div>
+
+                <div className="cart-form-row-inline">
+                    <div className="cart-form-field">
+                        <label>Age</label>
+                        <input
+                            type="number"
+                            min="0"
+                            max="120"
+                            placeholder="Age"
+                            value={patientAge}
+                            onChange={(e) => setPatientAge(e.target.value)}
+                        />
+                        {errors.patientAge && (
+                            <p className="field-error">{errors.patientAge}</p>
+                        )}
+                    </div>
+
+                    <div className="cart-form-field">
+                        <label>Gender</label>
+                        <select
+                            value={patientGender}
+                            onChange={(e) => setPatientGender(e.target.value)}
+                        >
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        {errors.patientGender && (
+                            <p className="field-error">{errors.patientGender}</p>
+                        )}
+                    </div>
+                </div>
+
+                <p className="checkout-subheading">Booking Details</p>
 
                 <div className="cart-form-field">
                     <label>Date</label>

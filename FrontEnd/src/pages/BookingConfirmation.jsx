@@ -20,6 +20,12 @@ function BookingConfirmation() {
 
                 <div className="confirmation-details">
                     <div className="confirmation-row">
+                        <span>Patient</span>
+                        <span>
+                            {booking.patientName} ({booking.patientAge}, {booking.patientGender})
+                        </span>
+                    </div>
+                    <div className="confirmation-row">
                         <span>Lab</span>
                         <span>{booking.labName}</span>
                     </div>
