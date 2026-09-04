@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart } from "lucide-react";
+import { ShoppingCart, User } from "lucide-react";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 
@@ -51,7 +51,10 @@ function Navbar() {
 
         {currentUser ? (
           <div className="user-menu">
-            <span className="user-greeting">Hi, {currentUser.name.split(" ")[0]}</span>
+            <Link to="/dashboard" className="dashboard-btn">
+              <User size={16} />
+              {currentUser.name.split(" ")[0]}
+            </Link>
             <button className="login-btn" onClick={logout}>
               Logout
             </button>

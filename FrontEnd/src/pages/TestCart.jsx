@@ -1,20 +1,15 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
+import { saveBooking } from "../utils/bookingsStore";
+import timeSlots from "../data/timeSlots";
 import {
     SLOT_CAPACITY,
     getSlotCount,
     isSlotFull,
     bookSlot,
 } from "../utils/slotAvailability";
-
-const timeSlots = [
-    "7:00 AM - 9:00 AM",
-    "9:00 AM - 11:00 AM",
-    "11:00 AM - 1:00 PM",
-    "4:00 PM - 6:00 PM",
-];
 
 function getDateBounds() {
     const today = new Date();
@@ -114,16 +109,23 @@ function TestCart() {
         bookSlot(cart.labId, date, slot);
 
         const booking = {
+            id: `MC-${Math.floor(100000 + Math.random() * 900000)}`,
+            type: "test",
+            userEmail: currentUser.email,
+            status: "upcoming",
+            date,
+            slot,
+            createdAt: new Date().toISOString(),
+            labId: cart.labId,
             labName: cart.labName,
             items: cart.items,
             total,
             mode,
-            date,
-            slot,
             phone,
             address: mode === "home" ? address : null,
         };
 
+        saveBooking(booking);
         clearCart();
         navigate("/tests/confirmation", { state: { booking } });
     };
@@ -185,6 +187,10 @@ function TestCart() {
                 <h1>Tests from {cart.labName}</h1>
                 <p>Review your selected tests and choose a collection slot.</p>
             </div>
+
+            <Link to={`/labs/${cart.labId}`} className="add-more-from-lab-link">
+                + Add more tests from {cart.labName}
+            </Link>
 
             <div className="cart-items-list">
                 {cart.items.map((item) => (

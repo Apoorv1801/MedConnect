@@ -44,3 +44,15 @@ export function bookSlot(labId, date, slot) {
     store[key] = (store[key] || 0) + 1;
     writeStore(store);
 }
+
+// Frees a slot — must be called whenever a booking is cancelled or
+// rescheduled away from this slot, otherwise capacity is permanently
+// "used up" even though no one actually holds it anymore.
+export function unbookSlot(labId, date, slot) {
+    const store = readStore();
+    const key = slotKey(labId, date, slot);
+    if (store[key]) {
+        store[key] = Math.max(0, store[key] - 1);
+        writeStore(store);
+    }
+}

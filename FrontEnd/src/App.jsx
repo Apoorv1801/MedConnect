@@ -11,6 +11,9 @@ import TestCart from "./pages/TestCart";
 import BookingConfirmation from "./pages/BookingConfirmation";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import LabDirectory from "./pages/LabDirectory";
+import LabProfile from "./pages/LabProfile";
 
 function App() {
   return (
@@ -37,6 +40,9 @@ function App() {
         <Route path="/tests/confirmation" element={<BookingConfirmation />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/labs" element={<LabDirectory />} />
+        <Route path="/labs/:id" element={<LabProfile />} />
       </Routes>
     </>
   );

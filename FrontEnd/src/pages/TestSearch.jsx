@@ -41,6 +41,10 @@ function TestSearch() {
                     Compare prices across laboratories, choose home collection where
                     available, and book your test in minutes.
                 </p>
+
+                <Link to="/labs" className="browse-by-lab-link">
+                    Prefer to book by lab instead? Browse all labs →
+                </Link>
             </div>
 
             <div className="test-search-controls">

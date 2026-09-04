@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import testsData from "../data/testsData";
 import labsData from "../data/labsData";
 import labTestOfferings from "../data/labTestOfferings";
@@ -119,17 +119,26 @@ function TestCompare() {
                             </div>
 
                             <div className="lab-offer-action">
-                                <span className="lab-offer-price">₹{offer.price}</span>
+                                <div className="lab-offer-action-row">
+                                    <span className="lab-offer-price">₹{offer.price}</span>
 
-                                <button
-                                    className="book-btn"
-                                    onClick={() => {
-                                        addToCart(test, offer.lab, offer);
-                                        navigate("/tests/cart");
-                                    }}
+                                    <button
+                                        className="book-btn"
+                                        onClick={() => {
+                                            addToCart(test, offer.lab, offer);
+                                            navigate("/tests/cart");
+                                        }}
+                                    >
+                                        Book Now
+                                    </button>
+                                </div>
+
+                                <Link
+                                    to={`/labs/${offer.lab.id}`}
+                                    className="see-more-from-lab-link"
                                 >
-                                    Book Now
-                                </button>
+                                    See all tests from {offer.lab.name}
+                                </Link>
                             </div>
                         </div>
                     ))

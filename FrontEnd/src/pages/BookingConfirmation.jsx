@@ -11,14 +11,12 @@ function BookingConfirmation() {
         return <Navigate to="/tests" replace />;
     }
 
-    const bookingId = `MC-${Math.floor(100000 + Math.random() * 900000)}`;
-
     return (
         <section className="booking-confirmation-page">
             <div className="confirmation-card">
                 <div className="confirmation-icon">✅</div>
                 <h1>Booking Confirmed!</h1>
-                <p className="confirmation-id">Booking ID: {bookingId}</p>
+                <p className="confirmation-id">Booking ID: {booking.id}</p>
 
                 <div className="confirmation-details">
                     <div className="confirmation-row">
