@@ -5,6 +5,8 @@ import Features from "./pages/Features";
 import SpecialtiesSection from "./pages/SpecialtiesSection";
 import TestCategoriesSection from "./pages/TestCategoriesSection";
 import FindDoctor from "./pages/FindDoctor";
+import DoctorBooking from "./pages/DoctorBooking";
+import AppointmentConfirmation from "./pages/AppointmentConfirmation";
 import TestSearch from "./pages/TestSearch";
 import TestCompare from "./pages/TestCompare";
 import TestCart from "./pages/TestCart";
@@ -34,6 +36,8 @@ function App() {
         />
 
         <Route path="/find-doctor" element={<FindDoctor />} />
+        <Route path="/find-doctor/:id" element={<DoctorBooking />} />
+        <Route path="/find-doctor/confirmation" element={<AppointmentConfirmation />} />
         <Route path="/tests" element={<TestSearch />} />
         <Route path="/tests/:id" element={<TestCompare />} />
         <Route path="/tests/cart" element={<TestCart />} />

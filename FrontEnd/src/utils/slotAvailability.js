@@ -56,3 +56,18 @@ export function unbookSlot(labId, date, slot) {
         writeStore(store);
     }
 }
+
+// Test bookings and appointment bookings share this same slot store, but
+// each type keys it differently: test bookings pass their raw numeric
+// labId (unchanged, so existing bookings already in localStorage keep
+// working), while appointment bookings are prefixed with "doctor-" so a
+// doctor's numeric id (e.g. 3) can never collide with a lab's numeric id
+// (e.g. 3) in the shared store. Anything reading/writing slot counts for
+// a saved booking (Dashboard's cancel/reschedule, for example) should go
+// through this instead of reading booking.labId directly.
+export function getBookingResourceKey(booking) {
+    if (booking.type === "appointment") {
+        return `doctor-${booking.doctorId}`;
+    }
+    return booking.labId;
+}

@@ -2667,3 +2667,45 @@ img {
     grid-template-columns: 1fr;
   }
 }
+/* DOCTOR BOOKING PAGE (mirrors .test-cart-page structure) */
+
+.doctor-booking-page {
+  min-height: calc(100vh - 78px);
+  padding: 90px 7% 110px;
+
+  background-color: rgb(238, 236, 222);
+}
+
+.doctor-booking-heading {
+  max-width: 750px;
+}
+
+.doctor-booking-heading h1 {
+  margin: 10px 0 0;
+
+  font-family: Georgia, serif;
+  font-size: 40px;
+  font-weight: 500;
+
+  color: #234b59;
+}
+
+.doctor-booking-heading p {
+  margin-top: 10px;
+
+  color: #496477;
+  font-size: 15px;
+}
+
+.doctor-booking-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 20px;
+  margin-bottom: 35px;
+
+  color: #65727a;
+  font-size: 14px;
+  font-weight: 600;
+}

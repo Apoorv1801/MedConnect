@@ -124,7 +124,12 @@ function FindDoctor() {
                   <span className="doctor-fee">₹{doc.fee}</span>
                 </div>
 
-                <button className="book-btn">Book Appointment</button>
+                <button
+                  className="book-btn"
+                  onClick={() => navigate(`/find-doctor/${doc.id}`)}
+                >
+                  Book Appointment
+                </button>
               </div>
             </div>
           ))

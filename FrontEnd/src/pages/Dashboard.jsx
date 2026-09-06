@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import {
@@ -12,6 +12,7 @@ import {
     isSlotFull,
     bookSlot,
     unbookSlot,
+    getBookingResourceKey,
 } from "../utils/slotAvailability";
 import {
     CANCEL_CUTOFF_HOURS,
@@ -42,22 +43,28 @@ function RescheduleForm({ booking, onCancel, onDone }) {
 
     const [date, setDate] = useState("");
     const [slot, setSlot] = useState("");
-    const [slotCounts, setSlotCounts] = useState({});
     const [error, setError] = useState("");
 
-    useEffect(() => {
-        if (!date) {
-            setSlotCounts({});
-            return;
-        }
+    const resourceKey = getBookingResourceKey(booking);
+
+    const slotCounts = useMemo(() => {
+        if (!date) return {};
 
         const counts = {};
         timeSlots.forEach((s) => {
-            counts[s] = getSlotCount(booking.labId, date, s);
+            counts[s] = getSlotCount(resourceKey, date, s);
         });
-        setSlotCounts(counts);
+        return counts;
+    }, [date, resourceKey]);
+
+    // Reset the chosen slot whenever the date changes — adjusting state
+    // during render (rather than in an effect) is the pattern React
+    // recommends for this. See https://react.dev/learn/you-might-not-need-an-effect
+    const [prevDate, setPrevDate] = useState(date);
+    if (date !== prevDate) {
+        setPrevDate(date);
         setSlot("");
-    }, [date, booking.labId]);
+    }
 
     const handleConfirm = () => {
         if (!date || !slot) {
@@ -67,13 +74,13 @@ function RescheduleForm({ booking, onCancel, onDone }) {
 
         // Re-check right before committing, in case it filled up while
         // this form was open.
-        if (isSlotFull(booking.labId, date, slot)) {
+        if (isSlotFull(resourceKey, date, slot)) {
             setError("This slot just got fully booked. Please pick another.");
             return;
         }
 
-        unbookSlot(booking.labId, booking.date, booking.slot);
-        bookSlot(booking.labId, date, slot);
+        unbookSlot(resourceKey, booking.date, booking.slot);
+        bookSlot(resourceKey, date, slot);
         rescheduleBooking(booking.id, date, slot);
 
         onDone();
@@ -163,18 +170,21 @@ function Dashboard() {
     const testBookings = allBookings
         .filter((b) => b.type === "test")
         .sort((a, b) => (a.date > b.date ? 1 : -1));
-    const appointmentBookings = allBookings.filter(
-        (b) => b.type === "appointment"
-    );
+    const appointmentBookings = allBookings
+        .filter((b) => b.type === "appointment")
+        .sort((a, b) => (a.date > b.date ? 1 : -1));
 
     const handleCancel = (booking) => {
+        const bookingLabel =
+            booking.type === "appointment" ? booking.doctorName : booking.labName;
+
         const confirmed = window.confirm(
-            `Cancel your booking at ${booking.labName} on ${booking.date}? This can't be undone.`
+            `Cancel your booking with ${bookingLabel} on ${booking.date}? This can't be undone.`
         );
         if (!confirmed) return;
 
         updateBookingStatus(booking.id, "cancelled");
-        unbookSlot(booking.labId, booking.date, booking.slot);
+        unbookSlot(getBookingResourceKey(booking), booking.date, booking.slot);
         forceRefresh((n) => n + 1);
     };
 
@@ -329,10 +339,109 @@ function Dashboard() {
 
             {tab === "appointments" && (
                 <div className="dashboard-list">
-                    <p className="no-results">
-                        Doctor appointment booking is being built — once it's ready,
-                        appointments will show up here automatically.
-                    </p>
+                    {appointmentBookings.length === 0 ? (
+                        <p className="no-results">
+                            No appointments booked yet.{" "}
+                            <span
+                                className="dashboard-link"
+                                onClick={() => navigate("/find-doctor")}
+                            >
+                                Find a doctor
+                            </span>
+                        </p>
+                    ) : (
+                        appointmentBookings.map((booking) => {
+                            const displayStatus = getBookingDisplayStatus(booking);
+                            const showCancel = canCancelBooking(booking);
+                            const showReschedule = canRescheduleBooking(booking);
+                            const isUpcoming = displayStatus === "upcoming";
+
+                            return (
+                                <div className="dashboard-booking-card" key={booking.id}>
+                                    <div className="dashboard-booking-top">
+                                        <h3>{booking.doctorName}</h3>
+                                        <span className={`booking-status ${displayStatus}`}>
+                                            {displayStatus === "upcoming" && "Upcoming"}
+                                            {displayStatus === "completed" && "Completed"}
+                                            {displayStatus === "cancelled" && "Cancelled"}
+                                        </span>
+                                    </div>
+
+                                    <p className="dashboard-booking-meta">
+                                        {booking.specialty} • {booking.hospitalName}
+                                    </p>
+
+                                    <p className="dashboard-booking-meta">
+                                        For {booking.patientName} ({booking.patientAge},{" "}
+                                        {booking.patientGender}) • {booking.date} •{" "}
+                                        {booking.slot} •{" "}
+                                        {booking.mode === "video"
+                                            ? "Video Consultation"
+                                            : "In-Person Visit"}
+                                    </p>
+
+                                    <div className="dashboard-booking-footer">
+                                        <span className="dashboard-booking-total">
+                                            Fee: ₹{booking.fee}
+                                        </span>
+
+                                        {displayStatus === "cancelled" && (
+                                            <span className="dashboard-booking-id">
+                                                Booking ID: {booking.id}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {isUpcoming && (
+                                        <div className="dashboard-booking-actions">
+                                            <button
+                                                className="reschedule-btn"
+                                                disabled={!showReschedule}
+                                                title={
+                                                    showReschedule
+                                                        ? "Pick a new date and slot"
+                                                        : `Reschedule must be made at least ${RESCHEDULE_CUTOFF_HOURS} hours before your slot`
+                                                }
+                                                onClick={() =>
+                                                    setReschedulingId(
+                                                        reschedulingId === booking.id ? null : booking.id
+                                                    )
+                                                }
+                                            >
+                                                {reschedulingId === booking.id
+                                                    ? "Close"
+                                                    : "Reschedule"}
+                                            </button>
+
+                                            <button
+                                                className="cancel-booking-btn"
+                                                disabled={!showCancel}
+                                                title={
+                                                    showCancel
+                                                        ? "Cancel this appointment"
+                                                        : `Cancellation must be made at least ${CANCEL_CUTOFF_HOURS} hours before your slot`
+                                                }
+                                                onClick={() => handleCancel(booking)}
+                                            >
+                                                Cancel Appointment
+                                            </button>
+                                        </div>
+                                    )}
+
+                                    {reschedulingId === booking.id && (
+                                        <RescheduleForm
+                                            booking={booking}
+                                            onCancel={() => setReschedulingId(null)}
+                                            onDone={() => {
+                                                setReschedulingId(null);
+                                                forceRefresh((n) => n + 1);
+                                            }}
+                                        />
+                                    )}
+                                </div>
+                            );
+                        })
+                    )}
                 </div>
             )}
         </section>
