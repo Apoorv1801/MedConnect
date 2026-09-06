@@ -36,7 +36,7 @@ function Navbar() {
       <div className="nav-links">
         <Link to="/">Home</Link>
         <Link to="/find-doctor">Find Doctor</Link>
-        <a href="#">Hospitals</a>
+        <Link to="/hospitals">Hospitals</Link>
         <Link to="/tests">Tests</Link>
         <a href="#">Online Consultation</a>
       </div>

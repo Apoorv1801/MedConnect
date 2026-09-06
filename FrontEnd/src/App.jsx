@@ -16,6 +16,9 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import LabDirectory from "./pages/LabDirectory";
 import LabProfile from "./pages/LabProfile";
+import HospitalDirectory from "./pages/HospitalDirectory";
+import HospitalProfile from "./pages/HospitalProfile";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -47,6 +50,9 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/labs" element={<LabDirectory />} />
         <Route path="/labs/:id" element={<LabProfile />} />
+        <Route path="/hospitals" element={<HospitalDirectory />} />
+        <Route path="/hospitals/:id" element={<HospitalProfile />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );

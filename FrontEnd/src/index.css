@@ -2667,6 +2667,7 @@ img {
     grid-template-columns: 1fr;
   }
 }
+
 /* DOCTOR BOOKING PAGE (mirrors .test-cart-page structure) */
 
 .doctor-booking-page {
@@ -2708,4 +2709,225 @@ img {
   color: #65727a;
   font-size: 14px;
   font-weight: 600;
+}
+
+/* =========================================================
+   HOSPITAL DIRECTORY PAGE
+   ========================================================= */
+
+.hospital-directory-page {
+  min-height: calc(100vh - 78px);
+  padding: 90px 7% 110px;
+
+  background-color: rgb(238, 236, 222);
+}
+
+.hospital-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+
+  margin-top: 40px;
+}
+
+.hospital-directory-card {
+  padding: 28px 26px;
+
+  background-color: white;
+  border: 1px solid #e0d6c5;
+  border-radius: 18px;
+
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hospital-directory-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(36, 79, 94, 0.1);
+}
+
+.hospital-directory-card:focus-visible {
+  outline: 2px solid #d9794a;
+  outline-offset: 2px;
+}
+
+.hospital-directory-card h3 {
+  color: #244f5e;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.hospital-directory-type {
+  color: #d9794a;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.hospital-directory-meta {
+  color: #65727a;
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   HOSPITAL PROFILE PAGE
+   ========================================================= */
+
+.hospital-profile-page {
+  min-height: calc(100vh - 78px);
+  padding: 90px 7% 110px;
+
+  background-color: rgb(238, 236, 222);
+}
+
+.hospital-profile-heading {
+  max-width: 700px;
+  margin-bottom: 25px;
+}
+
+.hospital-profile-heading h1 {
+  margin: 10px 0;
+
+  font-family: Georgia, serif;
+  font-size: clamp(26px, 4vw, 38px);
+  color: #234b59;
+}
+
+.hospital-profile-heading p {
+  color: #496477;
+  font-size: 15px;
+}
+
+.hospital-emergency-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  padding: 16px 22px;
+
+  background-color: #f3d9d5;
+  border-radius: 14px;
+
+  margin-bottom: 20px;
+
+  color: #b04a3f;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.hospital-emergency-banner a {
+  color: #b04a3f;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.hospital-facilities {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-bottom: 40px;
+}
+
+.hospital-facility-tag {
+  padding: 7px 16px;
+
+  background-color: #e6ceb3;
+  border-radius: 18px;
+
+  color: #234b59;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.hospital-section {
+  margin-bottom: 45px;
+}
+
+.hospital-section h2 {
+  font-family: Georgia, serif;
+  font-size: 24px;
+  color: #234b59;
+
+  margin-bottom: 20px;
+}
+
+.hospital-lab-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  padding: 22px 26px;
+
+  background-color: white;
+  border: 1px solid #e0d6c5;
+  border-radius: 16px;
+}
+
+.hospital-lab-card h3 {
+  color: #244f5e;
+  font-size: 17px;
+  margin-bottom: 6px;
+}
+
+
+/* =========================================================
+   404 PAGE
+   ========================================================= */
+
+.not-found-page {
+  min-height: calc(100vh - 78px);
+  padding: 90px 7%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgb(238, 236, 222);
+}
+
+.not-found-content {
+  text-align: center;
+}
+
+.not-found-content h1 {
+  font-family: Georgia, serif;
+  font-size: 72px;
+  color: #234b59;
+
+  margin-bottom: 12px;
+}
+
+.not-found-content p {
+  color: #65727a;
+  font-size: 16px;
+
+  margin-bottom: 24px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .hospital-directory-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .hospital-directory-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hospital-lab-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

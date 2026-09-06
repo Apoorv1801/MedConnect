@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import labsData from "../data/labsData";
 import labTestOfferings from "../data/labTestOfferings";
 import testsData from "../data/testsData";
+import hospitalsData from "../data/hospitalsData";
 import { useCart } from "../context/CartContext";
 
 function LabProfile() {
@@ -28,6 +29,10 @@ function LabProfile() {
         .filter((o) => o.labId === lab.id)
         .map((o) => ({ ...o, test: testsData.find((t) => t.id === o.testId) }));
 
+    const parentHospital = lab.hospitalId
+        ? hospitalsData.find((h) => h.id === lab.hospitalId)
+        : null;
+
     const handleAdd = (offer) => {
         addToCart(offer.test, lab, offer);
         setAddedIds((prev) => [...prev, offer.test.id]);
@@ -43,6 +48,15 @@ function LabProfile() {
                 <div className="section-label">{lab.city.toUpperCase()}</div>
                 <h1>{lab.name}</h1>
                 <p>⭐ {lab.rating} rating — all tests offered by this lab, in one place.</p>
+
+                {parentHospital && (
+                    <p
+                        className="dashboard-link"
+                        onClick={() => navigate(`/hospitals/${parentHospital.id}`)}
+                    >
+                        Part of {parentHospital.name} →
+                    </p>
+                )}
             </div>
 
             {cart.items.length > 0 && cart.labId === lab.id && (
