@@ -2912,6 +2912,68 @@ img {
   margin-bottom: 24px;
 }
 
+/* COMING SOON */
+
+.coming-soon-page {
+  min-height: calc(100vh - 78px);
+  padding: 90px 7%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgb(238, 236, 222);
+}
+
+.coming-soon-content {
+  text-align: center;
+  max-width: 480px;
+}
+
+.coming-soon-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #e6ceb3;
+  color: #234b59;
+}
+
+.coming-soon-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  margin-bottom: 14px;
+
+  border-radius: 999px;
+  background: #d9794a;
+  color: white;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.coming-soon-content h1 {
+  font-family: Georgia, serif;
+  font-size: 34px;
+  color: #234b59;
+
+  margin-bottom: 12px;
+}
+
+.coming-soon-content p {
+  color: #65727a;
+  font-size: 15px;
+  line-height: 1.6;
+
+  margin-bottom: 28px;
+}
+
 
 /* RESPONSIVE */
 

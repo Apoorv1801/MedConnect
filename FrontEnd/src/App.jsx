@@ -18,6 +18,7 @@ import LabDirectory from "./pages/LabDirectory";
 import LabProfile from "./pages/LabProfile";
 import HospitalDirectory from "./pages/HospitalDirectory";
 import HospitalProfile from "./pages/HospitalProfile";
+import ComingSoon from "./pages/ComingSoon";
 import NotFound from "./pages/NotFound";
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
         <Route path="/labs/:id" element={<LabProfile />} />
         <Route path="/hospitals" element={<HospitalDirectory />} />
         <Route path="/hospitals/:id" element={<HospitalProfile />} />
+        <Route path="/online-consultation" element={<ComingSoon />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>
